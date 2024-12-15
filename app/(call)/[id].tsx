@@ -5,6 +5,8 @@ import { useLocalSearchParams, useRouter } from 'expo-router'
 import { Colors } from '@/constants/Colors'
 import CallRoom from '@/components/call/CallRoom'
 import {generateSlug} from 'random-word-slugs'
+import Toast from 'react-native-root-toast'
+import { copySlug } from '@/lib/slug'
 
 export default function CallScreen() {
   const {id} = useLocalSearchParams()
@@ -15,7 +17,7 @@ export default function CallScreen() {
   
 
   useEffect(() =>{
-let slug: string;
+let slug: string | any;
 
 if(id !== '(call)' && id){
 'joining an existing call'
@@ -35,6 +37,14 @@ slug = generateSlug(3, {
 })
 const _call = client?.call('default', slug);
 _call?.join({create: true}).then(() =>{
+  Toast.show('You created successfully \n tap here to copy the Call ID to share',{
+    duration: Toast.durations.LONG,
+    position: Toast.positions.CENTER,
+    shadow: true,
+    onPress:async () =>{
+      copySlug(slug)
+    }
+  })
   setCall(_call)
 })
 

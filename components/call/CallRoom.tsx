@@ -9,7 +9,7 @@ import { copySlug, formatSlug } from '@/lib/slug';
 export default function CallRoom({slug}:{slug: string}) {
     const router = useRouter();
   return (
-    <View>
+    <View style={{flex: 1}}>
         <View>
 <RoomId slug={slug} />
         </View>

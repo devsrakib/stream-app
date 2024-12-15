@@ -12,7 +12,7 @@ type IButton = {
   titleColor: string,
   bold?: '600' | '500' | '400' | "700",
   marginBottom?: number,
-  onPress?: () => Promise<void>,
+  onPress?: () => Promise<void> | any,
   style?: any,
 }
 const Button = ({ title, width = verticalScale(300), titleColor, bold = '400', onPress, marginBottom = 10, style,  }: IButton) => {
